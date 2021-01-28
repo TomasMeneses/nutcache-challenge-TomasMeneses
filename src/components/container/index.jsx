@@ -45,17 +45,17 @@ const Container = () => {
         getData();
       }, [setEmployeeList]);
     return (
-        <div className="container">
+        <div data-testid="container-component" className="container">
             <div className="crud-container">
-                <button onClick={() => {toggleCreateEditModal(); setEmployeeId('') }} className="crud-container-button">Create Employee</button>
-                <button onClick={() => {toggleDeleteModal()}} className="crud-container-button">Delete last Employee</button>
-                <button onClick={() => {toggleCreateEditModal()}} className="crud-container-button">Update last Employee</button>
+                <button className="btn-info" onClick={() => {toggleCreateEditModal(); setEmployeeId('') }}>Create Employee</button>
+                <button className="btn-info" onClick={() => {toggleCreateEditModal()}} >Update last Employee</button>
+                <button className="btn-delete" onClick={() => {toggleDeleteModal()}} >Delete last Employee</button>
             </div>
             
             <CreateEditModal {...{isShowingCreateEditModal, toggleCreateEditModal}}>
                 <CreateEditModalHeader {...{toggleCreateEditModal}}/>
                 <CreateEditModalBody {...{toggleCreateEditModal}} listFunction={getData} employeeId={employeeId} handleLastEmployeeId={handleLastEmployeeId}>
-                    <button onClick={toggleCreateEditModal}>
+                    <button className="btn-delete" onClick={toggleCreateEditModal}>
                         Cancel
                     </button>
                 </CreateEditModalBody>

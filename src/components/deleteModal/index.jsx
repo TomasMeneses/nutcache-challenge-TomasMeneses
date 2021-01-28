@@ -29,7 +29,7 @@ const DeleteModal = ({ isShowingDeleteModal, toggleDeleteModal, children }) => {
     isShowingDeleteModal ? ReactDom.createPortal(
       <div className="modal-delete-overlay">
         <div className="modal-delete-wrapper">
-          <div className="modal-delete">
+          <div data-testid="delete-modal-component" className="modal-delete">
             {children}
           </div>
         </div>
@@ -67,10 +67,10 @@ export const DeleteModalBody = ({ toggleDeleteModal, employeeId, listFunction })
   
   return(
     <div className="modal-delete-body">
-        <button onClick={handleSaveEmployee}>
+        <button className="btn-success" onClick={handleSaveEmployee}>
           Yes
         </button>
-        <button onClick={toggleDeleteModal}>
+        <button className="btn-delete" onClick={toggleDeleteModal}>
           Cancel
         </button>
     </div>

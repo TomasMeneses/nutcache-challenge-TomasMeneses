@@ -30,7 +30,7 @@ const CreateEditModal = ({ isShowingCreateEditModal, toggleCreateEditModal, chil
     isShowingCreateEditModal ? ReactDom.createPortal(
       <div className="modal-overlay">
         <div className="modal-wrapper">
-          <div className="modal">
+          <div data-testid="create-modal-component" className="modal">
             {children}
           </div>
         </div>
@@ -107,53 +107,51 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
   }, [employeeId,setEmployee]);
 
   return (
-      <div className="modal-body">
-        <form onSubmit={handleSaveEmployee}>
+      <div>
+        <form className="modal-body" onSubmit={handleSaveEmployee}>
           <div className="body-inputs">
             <label htmlFor="name">Name *</label>
-            <input required value={employee.name} onChange={handleSetValue}  name="name" id="name" type="text"/>
+            <input className="input" required value={employee.name} onChange={handleSetValue}  name="name" id="name" type="text"/>
 
             <label htmlFor="birthDate">Birth Date *</label>
-            <input required value={employee.birthDate} onChange={handleSetValue}  name="birthDate" id="birthDate" type="date"/>
+            <input className="input" required value={employee.birthDate} onChange={handleSetValue}  name="birthDate" id="birthDate" type="date"/>
 
-            
-          </div>
-          
-          <div className="body-inputs">
             <label htmlFor="email">E-mail *</label>
-            <input required value={employee.email}  onChange={handleSetValue}  name="email" id="email" type="mail"/>
+            <input className="input" required value={employee.email}  onChange={handleSetValue}  name="email" id="email" type="mail"/>
 
             <label htmlFor="cpf">CPF *</label>
-            <input required value={employee.cpf}  onChange={handleSetValue}  name="cpf" id="cpf" type="text"/>
-          </div>
+            <input className="input" required value={employee.cpf}  onChange={handleSetValue}  name="cpf" id="cpf" type="text"/>
+            </div>
 
-          <div className="body-inputs">
-            <label htmlFor="startDate">Start Date *</label>
-            <input required value={employee.startDate}  onChange={handleSetValue}  name="startDate"  id="startDate" type="month"/>
+            <div className="body-inputs">
 
-            <label htmlFor="team">Team </label>
-            <select value={employee.team} onChange={handleSetValue} name="team">
-              <option value=""></option>
-              <option value="Front-End">Front-End</option>
-              <option value="Back-End">Back-End</option>
-              <option value="Mobile" >Mobile</option>
-            </select>
-          </div>
+              <label htmlFor="startDate">Start Date *</label>
+              <input className="input" required value={employee.startDate}  onChange={handleSetValue}  name="startDate"  id="startDate" type="month"/>
 
-          <div className="body-inputs">
-            <label htmlFor="gender">Gender *</label>
-            <select value={employee.gender} onChange={handleSetValue} name="gender">
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Not Binary">Not Binary</option>
-            </select>
-          </div>
-          <div className="modal-footer">
-            <button type="submit" onClick={() => false}>
-              Save
-            </button>
-            {children}
-          </div>
+              <label htmlFor="team">Team </label>
+              <select className="input" value={employee.team} onChange={handleSetValue} name="team">
+                <option value=""></option>
+                <option value="Front-End">Front-End</option>
+                <option value="Back-End">Back-End</option>
+                <option value="Mobile" >Mobile</option>
+              </select>
+            
+              <label htmlFor="gender">Gender *</label>
+              <select className="input" value={employee.gender} onChange={handleSetValue} name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Not Binary">Not Binary</option>
+              </select>
+              <div className="modal-footer">
+                <button className="btn-success" type="submit" onClick={() => false}>
+                  Save
+                </button>
+                {children}
+              </div>
+            </div>
+          
+          
+          
         </form>
         
       </div>
