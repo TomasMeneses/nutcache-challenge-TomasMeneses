@@ -129,7 +129,7 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
 
           <div className="body-inputs">
             <label htmlFor="startDate">Start Date *</label>
-            <input required value={employee.startDate}  onChange={handleSetValue}  name="startDate"  id="startDate" type="text"/>
+            <input required value={employee.startDate}  onChange={handleSetValue}  name="startDate"  id="startDate" type="month"/>
 
             <label htmlFor="team">Team </label>
             <select value={employee.team} onChange={handleSetValue} name="team">

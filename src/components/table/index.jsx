@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.css'
-const Table = ({employees, toggleCreateEditModal, getEmployeeId}) => {
+const Table = ({employees, toggleCreateEditModal, getEmployeeId, toggleDeleteModal}) => {
 
     const mockedItems = [
         {
@@ -82,7 +82,7 @@ const Table = ({employees, toggleCreateEditModal, getEmployeeId}) => {
                 <td>{employee.startDate}</td>
                 <td>{employee.team}</td>
                 <td><button onClick={() => {toggleCreateEditModal(); getEmployeeId(employee._id) }}>Edit</button></td>
-                <td><button>Delete</button></td>
+                <td><button onClick={() => {toggleDeleteModal(); getEmployeeId(employee._id) }}>Delete</button></td>
             </tr>
                 )}
             </tbody>

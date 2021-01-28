@@ -1,4 +1,4 @@
-.modal-overlay {
+.modal-delete-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,7 +8,7 @@
     background-color: rgba(0,0,0,0.5);
   }
   
-  .modal-wrapper {
+  .modal-delete-wrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -20,41 +20,41 @@
     outline: 0;
   }
   
-  .modal {
+  .modal-delete {
     z-index: 100 !important;
     background: white;
     position: relative;
     margin:20px auto;
     border-radius: 3px;
-    max-width: 800px;
-    max-height: 800px;
+    max-width: 300px;
+    max-height: 300px;
     
     padding: 8px;
     border-radius: 4px;
   }
   
-  .modal-header {
+  .modal-delete-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     border-bottom: 1px solid #ddd;
     padding: 8px 0;
     font-weight: bold;
   }
   
-  .modal-button-close {
+  .modal-delete-button-close {
     background: transparent;
     border: none;
     cursor: pointer;
     font-size: 16px;
   }
   
-  .modal-body {
+  .modal-delete-body {
+    display: flex;
+    justify-content: center;
     padding: 8px 0;
   }
-  
-  .modal-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding: 8px 0;  
+
+  .modal-delete-body>button {
+    margin: 5px;
   }
+  

@@ -4,17 +4,24 @@ import Table from '../table/';
 import CreateEditModal, {
     CreateEditModalHeader, 
     CreateEditModalBody, 
-     
     useCreateEditModal
-} from '../createEditModal'
+} from '../createEditModal';
+
+import DeleteModal, {
+    DeleteModalHeader, 
+    DeleteModalBody, 
+    useDeleteModal
+} from '../deleteModal';
 
 import api from '../../services/employee'
 
 const Container = () => {
     const { isShowingCreateEditModal, toggleCreateEditModal } = useCreateEditModal();
+    const { isShowingDeleteModal, toggleDeleteModal } = useDeleteModal();
     const [employeeList, setEmployeeList] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
-    const [lastEmployeeIdSaved, setLastEmployeeIdSaved] = useState('');
+
+    //const [lastEmployeeIdSaved, setLastEmployeeIdSaved] = useState('');
 
     const handleLastEmployeeId = (id) => {
         setEmployeeId(id);
@@ -41,7 +48,7 @@ const Container = () => {
         <div className="container">
             <div className="crud-container">
                 <button onClick={() => {toggleCreateEditModal(); setEmployeeId('') }} className="crud-container-button">Create Employee</button>
-                <button className="crud-container-button">Delete last Employee</button>
+                <button onClick={() => {toggleDeleteModal()}} className="crud-container-button">Delete last Employee</button>
                 <button onClick={() => {toggleCreateEditModal()}} className="crud-container-button">Update last Employee</button>
             </div>
             
@@ -52,10 +59,16 @@ const Container = () => {
                         Cancel
                     </button>
                 </CreateEditModalBody>
-                
-                      
             </CreateEditModal>
-            <Table employees={employeeList} toggleCreateEditModal={toggleCreateEditModal} getEmployeeId={getEmployeeId} />
+            
+            <DeleteModal {...{isShowingDeleteModal, toggleDeleteModal}}>
+                <DeleteModalHeader {...{toggleDeleteModal}}/>
+                <DeleteModalBody {...{toggleDeleteModal}} listFunction={getData} employeeId={employeeId}/>
+                    
+                
+            </DeleteModal>
+
+            <Table employees={employeeList} toggleCreateEditModal={toggleCreateEditModal} getEmployeeId={getEmployeeId} toggleDeleteModal={toggleDeleteModal} />
         </div>
     )
 }
