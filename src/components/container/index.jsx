@@ -21,10 +21,10 @@ const Container = () => {
     const [employeeList, setEmployeeList] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
 
-    //const [lastEmployeeIdSaved, setLastEmployeeIdSaved] = useState('');
+    const [lastEmployeeIdSaved, setLastEmployeeIdSaved] = useState('');
 
     const handleLastEmployeeId = (id) => {
-        setEmployeeId(id);
+        setLastEmployeeIdSaved(id);
     }
 
     const getData = async () => {
@@ -48,8 +48,8 @@ const Container = () => {
         <div data-testid="container-component" className="container">
             <div className="crud-container">
                 <button className="btn-info" onClick={() => {toggleCreateEditModal(); setEmployeeId('') }}>Create Employee</button>
-                <button className="btn-info" onClick={() => {toggleCreateEditModal()}} >Update last Employee</button>
-                <button className="btn-delete" onClick={() => {toggleDeleteModal()}} >Delete last Employee</button>
+                <button className="btn-info" onClick={() => {toggleCreateEditModal(); setEmployeeId(lastEmployeeIdSaved) }} >Update last Employee</button>
+                <button className="btn-delete" onClick={() => {toggleDeleteModal(); setEmployeeId(lastEmployeeIdSaved)}} >Delete last Employee</button>
             </div>
             
             <CreateEditModal {...{isShowingCreateEditModal, toggleCreateEditModal}}>

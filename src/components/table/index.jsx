@@ -4,68 +4,6 @@ import { TiPencil } from 'react-icons/ti';
 import { BsFillTrashFill } from 'react-icons/bs';
 const Table = ({employees, toggleCreateEditModal, getEmployeeId, toggleDeleteModal}) => {
 
-    const mockedItems = [
-        {
-          "_id": "60119eac37711c03e8736380",
-          "name": "TomasMeneses",
-          "birthDate": "1996-06-11",
-          "email": "tomasmeneses22@gmail.com",
-          "cpf": "01446809471",
-          "startDate": "11",
-          "team": "front",
-          "gender": "M"
-        },
-        {
-          "_id": "60119eac37711c03e8736381",
-          "name": "TomasMeneses",
-          "birthDate": "1996-06-11",
-          "email": "tomasmeneses22@gmail.com",
-          "cpf": "01446809471",
-          "startDate": "11",
-          "team": "front",
-          "gender": "M"
-        },
-        {
-          "_id": "60119ef437711c03e8736382",
-          "name": "Tomas Teste 1",
-          "birthDate": "1996-06-11",
-          "email": "tomasmeneses22@gmail.com",
-          "cpf": "01446809471",
-          "startDate": "11",
-          "team": "front",
-          "gender": "M"
-        },
-        {
-          "_id": "60119ef437711c03e8736383",
-          "name": "Tomas Teste 1",
-          "birthDate": "1996-06-11",
-          "email": "tomasmeneses22@gmail.com",
-          "cpf": "01446809471",
-          "startDate": "11",
-          "team": "front",
-          "gender": "M"
-        },
-        {
-          "_id": "60119f6f37711c03e8736384",
-          "name": "Teste 3",
-          "birthDate": "1996-06-11",
-          "email": "tomasmeneses22@gmail.com",
-          "cpf": "01446809471",
-          "startDate": "11",
-          "team": "front",
-          "gender": "M"
-        },
-        {
-          "_id": "60119fcb37711c03e8736385",
-          "name": "Teste 3",
-          "birthDate": "1996-06-11",
-          "email": "tomasmeneses22@gmail.com",
-          "cpf": "01446809471",
-          "startDate": "11",
-          "team": "front",
-          "gender": "M"
-        }
-      ]
     return (
       <div className="container-table">
 
@@ -81,7 +19,7 @@ const Table = ({employees, toggleCreateEditModal, getEmployeeId, toggleDeleteMod
               </tr>
             </thead>
                 <tbody>
-            {mockedItems.map(employee =>
+            {employees.map(employee =>
             <tr key={employee._id}>
                 <td>{employee.name}</td>
                 <td>{employee.email}</td>
