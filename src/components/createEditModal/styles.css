@@ -27,7 +27,7 @@
     margin:20px auto;
     border-radius: 3px;
     max-width: 800px;
-    max-height: 800px;
+    max-height: 1000px;
     
     padding: 8px;
     border-radius: 4px;
@@ -57,19 +57,19 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content:center;
-    flex-wrap: wrap;
+    
   }
 
   .body-inputs {
     flex: 1;
+    margin: 5px;
+  }
+  .body-inputs>select {
+    width: 85%;
   }
   
   .modal-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    padding: 8px 0;  
+    align-self: flex-end;
   }
 
   .modal-footer>button {

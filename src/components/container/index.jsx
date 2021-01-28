@@ -14,6 +14,11 @@ const Container = () => {
     const { isShowingCreateEditModal, toggleCreateEditModal } = useCreateEditModal();
     const [employeeList, setEmployeeList] = useState([]);
     const [employeeId, setEmployeeId] = useState('');
+    const [lastEmployeeIdSaved, setLastEmployeeIdSaved] = useState('');
+
+    const handleLastEmployeeId = (id) => {
+        setEmployeeId(id);
+    }
 
     const getData = async () => {
         try {
@@ -25,10 +30,9 @@ const Container = () => {
         }
     };
 
-    const handleGetEmployeeId = (employeeId) => {
-      
+    const getEmployeeId = (employeeId) => {
         setEmployeeId(employeeId);
-    }
+    };
     
     useEffect(() => {
         getData();
@@ -36,16 +40,14 @@ const Container = () => {
     return (
         <div className="container">
             <div className="crud-container">
-                <button onClick={ toggleCreateEditModal } className="crud-container-button">Create Employee</button>
+                <button onClick={() => {toggleCreateEditModal(); setEmployeeId('') }} className="crud-container-button">Create Employee</button>
                 <button className="crud-container-button">Delete last Employee</button>
-                <button className="crud-container-button">Update last Employee</button>
+                <button onClick={() => {toggleCreateEditModal()}} className="crud-container-button">Update last Employee</button>
             </div>
             
             <CreateEditModal {...{isShowingCreateEditModal, toggleCreateEditModal}}>
                 <CreateEditModalHeader {...{toggleCreateEditModal}}/>
-                <CreateEditModalBody listFunction={getData} employeeId={employeeId}>
-
-                    
+                <CreateEditModalBody {...{toggleCreateEditModal}} listFunction={getData} employeeId={employeeId} handleLastEmployeeId={handleLastEmployeeId}>
                     <button onClick={toggleCreateEditModal}>
                         Cancel
                     </button>
@@ -53,7 +55,7 @@ const Container = () => {
                 
                       
             </CreateEditModal>
-            <Table employees={employeeList} toggleCreateEditModal={toggleCreateEditModal} handleGetEmployeeId={handleGetEmployeeId} />
+            <Table employees={employeeList} toggleCreateEditModal={toggleCreateEditModal} getEmployeeId={getEmployeeId} />
         </div>
     )
 }

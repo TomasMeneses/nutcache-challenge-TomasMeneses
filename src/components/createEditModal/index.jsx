@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import ReactDom from 'react-dom'
-import { useForm } from "react-hook-form";
+//import { useForm } from "react-hook-form";
 import  api  from "../../services/employee"
 
 import './styles.css'
@@ -47,15 +47,51 @@ export const CreateEditModalHeader = () => (
     </div>
 )
 
-export const CreateEditModalBody = ({ children, listFunction, employeeId }) => {
+export const CreateEditModalBody = ({ children, listFunction, employeeId, toggleCreateEditModal, handleLastEmployeeId }) => {
   
-  const { register, handleSubmit, errors } = useForm();
-  const [employee, setEmployee] = useState({});
+  const [employee, setEmployee] = useState({
+    "name": "",
+    "birthDate": "",
+    "email": "",
+    "cpf": "",
+    "startDate": "",
+    "team": "Mobile",
+    "gender": "Male"
+  });
+
+  const handleSetValue = (event) => {
+    console.log({...employee, [event.target.name]: event.target.value})
+    setEmployee({...employee, [event.target.name]: event.target.value})
+  }
+
+
+
+  const handleSaveEmployee = async (event) => {
+    try {
+      event.preventDefault();
+      
+      if(employee && employee._id){
+        var idToUpdate = employee._id;
+        //const employeeToUpdate = {...employee, _id: undefined}
+        delete employee._id
+        const response = await api.put(idToUpdate, employee);
+      }else if (employee) {
+        const response = await api.post('', employee);
+        handleLastEmployeeId(response.data._id);
+      }
+      listFunction();
+      toggleCreateEditModal();
+
+    }catch(error) {
+      console.log(error);
+      toggleCreateEditModal();
+    }
+
+  }
 
   useEffect(() => {
     
     const getEmployee = async () => {
-      console.log(typeof(employeeId));
       if(employeeId) {
         try {
           const response = await api.get(employeeId);
@@ -70,85 +106,56 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId }) => {
     getEmployee();
   }, [employeeId,setEmployee]);
 
-  const handleSetValue = (event) => {
-    console.log({...employee, [event.target.name]: event.target.value})
-    setEmployee({...employee, [event.target.name]: event.target.value})
-  }
-
-  const onSubmit = async (data) => {
-    
-      if(data){
-        try{
-          const response = await api.post('', data);
-          listFunction();
-        } catch(error) {
-          console.log(error);
-        }
-      }
-  }
-
-  const handleSaveEmployee = async () => {
-
-    if(employee && employee._id){
-      try{
-        var idToUpdate = employee._id;
-        delete employee._id
-        const response = await api.put(idToUpdate, employee);
-        listFunction();
-      } catch(error) {
-        console.log(error);
-      }
-    }else if (employee) {
-      try{
-        const response = await api.post('', employee);
-        listFunction();
-      } catch(error) {
-        console.log(error);
-      }
-    }
-  }
-
   return (
       <div className="modal-body">
-        <form >
+        <form onSubmit={handleSaveEmployee}>
           <div className="body-inputs">
-            <label htmlFor="name">Name</label>
-            <input value={employee.name} onChange={handleSetValue}  name="name" id="name" type="text"/>
+            <label htmlFor="name">Name *</label>
+            <input required value={employee.name} onChange={handleSetValue}  name="name" id="name" type="text"/>
 
-            <label htmlFor="birthDate">Birth Date</label>
-            <input value={employee.birthDate} onChange={handleSetValue}  name="birthDate" id="birthDate" type="date"/>
+            <label htmlFor="birthDate">Birth Date *</label>
+            <input required value={employee.birthDate} onChange={handleSetValue}  name="birthDate" id="birthDate" type="date"/>
 
             
           </div>
           
           <div className="body-inputs">
-            <label htmlFor="email">E-mail</label>
-            <input value={employee.email}  onChange={handleSetValue}  name="email" id="email" type="text"/>
+            <label htmlFor="email">E-mail *</label>
+            <input required value={employee.email}  onChange={handleSetValue}  name="email" id="email" type="mail"/>
 
-            <label htmlFor="cpf">CPF</label>
-            <input value={employee.cpf}  onChange={handleSetValue}  name="cpf" id="cpf" type="text"/>
+            <label htmlFor="cpf">CPF *</label>
+            <input required value={employee.cpf}  onChange={handleSetValue}  name="cpf" id="cpf" type="text"/>
           </div>
 
           <div className="body-inputs">
-            <label htmlFor="startDate">Start Date</label>
-            <input value={employee.startDate}  onChange={handleSetValue}  name="startDate"  id="starDate" type="text"/>
+            <label htmlFor="startDate">Start Date *</label>
+            <input required value={employee.startDate}  onChange={handleSetValue}  name="startDate"  id="startDate" type="text"/>
 
-            <label htmlFor="team">Team</label>
-            <input value={employee.team} onChange={handleSetValue}  name="team" id="team" type="text"/>
+            <label htmlFor="team">Team </label>
+            <select value={employee.team} onChange={handleSetValue} name="team">
+              <option value=""></option>
+              <option value="Front-End">Front-End</option>
+              <option value="Back-End">Back-End</option>
+              <option value="Mobile" >Mobile</option>
+            </select>
           </div>
 
           <div className="body-inputs">
-            <label htmlFor="gender">Gender</label>
-            <input value={employee.gender} onChange={handleSetValue}  name="gender" id="gender" type="text"/>
+            <label htmlFor="gender">Gender *</label>
+            <select value={employee.gender} onChange={handleSetValue} name="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Not Binary">Not Binary</option>
+            </select>
           </div>
-          
-        </form>
-        <div className="modal-footer">
-        <button onClick={handleSaveEmployee}>
-          Create
-        </button>
+          <div className="modal-footer">
+            <button type="submit" onClick={() => false}>
+              Save
+            </button>
             {children}
           </div>
+        </form>
+        
       </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.css'
-const Table = ({employees, toggleCreateEditModal, handleGetEmployeeId}) => {
+const Table = ({employees, toggleCreateEditModal, getEmployeeId}) => {
 
     const mockedItems = [
         {
@@ -9,7 +9,7 @@ const Table = ({employees, toggleCreateEditModal, handleGetEmployeeId}) => {
           "birthDate": "1996-06-11",
           "email": "tomasmeneses22@gmail.com",
           "cpf": "01446809471",
-          "starDate": "11",
+          "startDate": "11",
           "team": "front",
           "gender": "M"
         },
@@ -19,7 +19,7 @@ const Table = ({employees, toggleCreateEditModal, handleGetEmployeeId}) => {
           "birthDate": "1996-06-11",
           "email": "tomasmeneses22@gmail.com",
           "cpf": "01446809471",
-          "starDate": "11",
+          "startDate": "11",
           "team": "front",
           "gender": "M"
         },
@@ -29,7 +29,7 @@ const Table = ({employees, toggleCreateEditModal, handleGetEmployeeId}) => {
           "birthDate": "1996-06-11",
           "email": "tomasmeneses22@gmail.com",
           "cpf": "01446809471",
-          "starDate": "11",
+          "startDate": "11",
           "team": "front",
           "gender": "M"
         },
@@ -39,7 +39,7 @@ const Table = ({employees, toggleCreateEditModal, handleGetEmployeeId}) => {
           "birthDate": "1996-06-11",
           "email": "tomasmeneses22@gmail.com",
           "cpf": "01446809471",
-          "starDate": "11",
+          "startDate": "11",
           "team": "front",
           "gender": "M"
         },
@@ -49,7 +49,7 @@ const Table = ({employees, toggleCreateEditModal, handleGetEmployeeId}) => {
           "birthDate": "1996-06-11",
           "email": "tomasmeneses22@gmail.com",
           "cpf": "01446809471",
-          "starDate": "11",
+          "startDate": "11",
           "team": "front",
           "gender": "M"
         },
@@ -59,7 +59,7 @@ const Table = ({employees, toggleCreateEditModal, handleGetEmployeeId}) => {
           "birthDate": "1996-06-11",
           "email": "tomasmeneses22@gmail.com",
           "cpf": "01446809471",
-          "starDate": "11",
+          "startDate": "11",
           "team": "front",
           "gender": "M"
         }
@@ -67,19 +67,21 @@ const Table = ({employees, toggleCreateEditModal, handleGetEmployeeId}) => {
     return (
         <table>
             <thead>
+              <tr>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Start Date</th>
                 <th>Team</th>
+              </tr>
             </thead>
                 <tbody>
             {employees.map(employee =>
             <tr key={employee._id}>
                 <td>{employee.name}</td>
                 <td>{employee.email}</td>
-                <td>{employee.starDate}</td>
+                <td>{employee.startDate}</td>
                 <td>{employee.team}</td>
-                <td><button onClick={() => {toggleCreateEditModal(); handleGetEmployeeId(employee._id) }}>Edit</button></td>
+                <td><button onClick={() => {toggleCreateEditModal(); getEmployeeId(employee._id) }}>Edit</button></td>
                 <td><button>Delete</button></td>
             </tr>
                 )}
