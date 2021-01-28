@@ -23,9 +23,6 @@ const Container = () => {
 
     const [lastEmployeeIdSaved, setLastEmployeeIdSaved] = useState('');
 
-    const handleLastEmployeeId = (id) => {
-        setLastEmployeeIdSaved(id);
-    }
 
     const getData = async () => {
         try {
@@ -37,9 +34,6 @@ const Container = () => {
         }
     };
 
-    const getEmployeeId = (employeeId) => {
-        setEmployeeId(employeeId);
-    };
     
     useEffect(() => {
         getData();
@@ -54,7 +48,7 @@ const Container = () => {
             
             <CreateEditModal {...{isShowingCreateEditModal, toggleCreateEditModal}}>
                 <CreateEditModalHeader {...{toggleCreateEditModal}}/>
-                <CreateEditModalBody {...{toggleCreateEditModal}} listFunction={getData} employeeId={employeeId} handleLastEmployeeId={handleLastEmployeeId}>
+                <CreateEditModalBody {...{toggleCreateEditModal}} listFunction={getData} employeeId={employeeId} handleLastEmployeeId={setLastEmployeeIdSaved}>
                     <button className="btn-delete" onClick={toggleCreateEditModal}>
                         Cancel
                     </button>
@@ -68,7 +62,7 @@ const Container = () => {
                 
             </DeleteModal>
 
-            <Table employees={employeeList} toggleCreateEditModal={toggleCreateEditModal} getEmployeeId={getEmployeeId} toggleDeleteModal={toggleDeleteModal} />
+            <Table employees={employeeList} toggleCreateEditModal={toggleCreateEditModal} setEmployeeId={setEmployeeId} toggleDeleteModal={toggleDeleteModal} />
         </div>
     )
 }

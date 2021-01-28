@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.css'
 import { TiPencil } from 'react-icons/ti';
 import { BsFillTrashFill } from 'react-icons/bs';
-const Table = ({employees, toggleCreateEditModal, getEmployeeId, toggleDeleteModal}) => {
+const Table = ({employees, toggleCreateEditModal, setEmployeeId, toggleDeleteModal}) => {
 
     return (
       <div className="container-table">
@@ -25,8 +25,8 @@ const Table = ({employees, toggleCreateEditModal, getEmployeeId, toggleDeleteMod
                 <td>{employee.email}</td>
                 <td>{employee.startDate}</td>
                 <td>{employee.team}</td>
-                <td><button className="btn-edit"onClick={() => {toggleCreateEditModal(); getEmployeeId(employee._id) }}><TiPencil/></button></td>
-                <td><button className="btn-delete" onClick={() => {toggleDeleteModal(); getEmployeeId(employee._id) }}><BsFillTrashFill/></button></td>
+                <td><button className="btn-edit"onClick={() => {toggleCreateEditModal(); setEmployeeId(employee._id) }}> <i className="icon-style"><TiPencil/></i></button></td>
+                <td><button className="btn-delete" onClick={() => {toggleDeleteModal(); setEmployeeId(employee._id) }}> <i className="icon-style"><BsFillTrashFill/></i></button></td>
             </tr>
                 )}
             </tbody>
