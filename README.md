@@ -16,7 +16,8 @@ Antes de tudo você precisa ter o npm ou yarn instalados.
  
 
 Obrigado :)
+![Tela Inicial](https://i.imgur.com/aWthgLM.png)
 
-<img src="https://drive.google.com/file/d/1tVlHAqR5FBBeOhdNrdrkR0QY3e3jMnET/view?usp=sharing"  width="100%" height="100%">
-<img src="https://drive.google.com/file/d/1aJxV91P9XLFVpOxV4RLfKFnTOLOBc9ds/view?usp=sharing"  width="100%" height="100%">
-<img src="https://drive.google.com/file/d/1JShSkygwoW_AMkRa9195HRACm8WEuZV9/view?usp=sharing"  width="100%" height="100%">
+![Modal Criação](https://i.imgur.com/IYpjdPw.png)
+
+![Modal Delete](https://i.imgur.com/ovSOsB5.png)
