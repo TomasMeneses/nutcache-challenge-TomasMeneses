@@ -21,8 +21,8 @@ const Spinner = ({isShowingSpinner}) => {
 export const useSpinner = () => {
   const [isShowingSpinner, setIsShowingSpinner] = useState(false);
 
-  function toggleSpinner() {
-    setIsShowingSpinner(!isShowingSpinner);
+  function toggleSpinner(isShowing) {
+    setIsShowingSpinner(isShowing);
   }
 
   return {

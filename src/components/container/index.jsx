@@ -30,9 +30,12 @@ const Container = () => {
 
     const getData = async () => {
         try {
+            toggleSpinner(true);
             const response = await api.get('/employees');
+            toggleSpinner(false);
             setEmployeeList(response.data);
         }catch(error) {
+            toggleSpinner(false);
             window.alert('Requisition Error');
         }
     };

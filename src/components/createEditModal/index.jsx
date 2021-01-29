@@ -70,21 +70,21 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
       event.preventDefault();
       
       if(employee && employee.id){
-        toggleSpinner();
+        toggleSpinner(true);
         var idToUpdate = employee.id;
         const response = await api.put('/employees/'+idToUpdate, employee);
       }else if (employee) {
-        toggleSpinner();
+        toggleSpinner(true);
         const response = await api.post('/employees', employee);
         handleLastEmployeeId(response.data.id);
       }
-      toggleSpinner();
       listFunction();
+      toggleSpinner(false);
       toggleCreateEditModal();
 
     }catch(error) {
       window.alert('Save Fail');
-      toggleSpinner();
+      toggleSpinner(false);
       toggleCreateEditModal();
     }
 
@@ -95,9 +95,12 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
     const getEmployee = async () => {
       if(employeeId) {
         try {
+          toggleSpinner(true);
           const response = await api.get('/employees/'+ employeeId);
+          toggleSpinner(false);
           setEmployee(response.data);
         }catch(error) {
+          toggleSpinner(false);
           window.alert('Read Employee Error');
         }
       }

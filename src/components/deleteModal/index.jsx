@@ -52,16 +52,16 @@ export const DeleteModalBody = ({ toggleDeleteModal, employeeId, listFunction })
     try {
       
       if(employeeId){
-        toggleSpinner();
+        toggleSpinner(true);
         const response = await api.delete('/employees/'+ employeeId);
       }
-      toggleSpinner();
       listFunction();
+      toggleSpinner(false);
       toggleDeleteModal();
 
     }catch(error) {
       window.alert('Delete Error');
-      toggleSpinner();
+      toggleSpinner(false);
       toggleDeleteModal();
     }
 
