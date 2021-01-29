@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactDom from 'react-dom'
-
+import Spinner, { useSpinner } from '../spinner';
 import  api  from "../../services/employee"
 
 import './styles.css'
@@ -47,34 +47,39 @@ export const DeleteModalHeader = () => (
 )
 
 export const DeleteModalBody = ({ toggleDeleteModal, employeeId, listFunction }) => {
-  
+  const { isShowingSpinner, toggleSpinner } = useSpinner();
   const handleSaveEmployee = async (event) => {
     try {
       
       if(employeeId){
-        
+        toggleSpinner();
         const response = await api.delete('/employees/'+ employeeId);
       }
-      
+      toggleSpinner();
       listFunction();
       toggleDeleteModal();
 
     }catch(error) {
       window.alert('Delete Error');
+      toggleSpinner();
       toggleDeleteModal();
     }
 
   }
   
   return(
-    <div className="modal-delete-body">
-        <button className="btn-success" onClick={handleSaveEmployee}>
-          Yes
-        </button>
-        <button className="btn-delete" onClick={toggleDeleteModal}>
-          Cancel
-        </button>
-    </div>
+    <>
+    
+      <div className="modal-delete-body">
+          <button className="btn-success" onClick={handleSaveEmployee}>
+            Yes
+          </button>
+          <button className="btn-delete" onClick={toggleDeleteModal}>
+            Cancel
+          </button>
+      </div>
+      <Spinner {...{isShowingSpinner, toggleSpinner}} ></Spinner>
+    </>
 )}
 
 

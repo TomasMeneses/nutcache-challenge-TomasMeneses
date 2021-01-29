@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import ReactDom from 'react-dom'
-//import { useForm } from "react-hook-form";
+import Spinner, { useSpinner } from '../spinner';
 import  api  from "../../services/employee"
 
 import './styles.css'
@@ -48,7 +48,7 @@ export const CreateEditModalHeader = () => (
 )
 
 export const CreateEditModalBody = ({ children, listFunction, employeeId, toggleCreateEditModal, handleLastEmployeeId }) => {
-  
+  const { isShowingSpinner, toggleSpinner } = useSpinner();
   const [employee, setEmployee] = useState({
     "name": "",
     "birthDate": "",
@@ -70,18 +70,21 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
       event.preventDefault();
       
       if(employee && employee.id){
+        toggleSpinner();
         var idToUpdate = employee.id;
-        delete employee.id
         const response = await api.put('/employees/'+idToUpdate, employee);
       }else if (employee) {
+        toggleSpinner();
         const response = await api.post('/employees', employee);
         handleLastEmployeeId(response.data.id);
       }
+      toggleSpinner();
       listFunction();
       toggleCreateEditModal();
 
     }catch(error) {
       window.alert('Save Fail');
+      toggleSpinner();
       toggleCreateEditModal();
     }
 
@@ -101,6 +104,7 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
       
     };
     getEmployee();
+
   }, [employeeId,setEmployee]);
 
   return (
@@ -150,7 +154,7 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
           
           
         </form>
-        
+        <Spinner {...{isShowingSpinner, toggleSpinner}} ></Spinner>
       </div>
   )
 }
