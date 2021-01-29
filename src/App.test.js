@@ -1,15 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Table from './components/table';
 import DeleteModal from './components/deleteModal';
 import CreateEditModal from './components/createEditModal';
 import Container from './components/container';
 
-test('should add table in document', () => {
-    const { getByTestId } = render(<Table/>);
-    const tableElement = getByTestId('table-component');
-    expect(tableElement).toBeInTheDocument();
-});
+
 
 test('should add Delete Modal in document', () => {
     const { getByTestId } = render(<DeleteModal isShowingDeleteModal={true}/>);

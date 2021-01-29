@@ -7,6 +7,7 @@ Antes de tudo você precisa ter o npm ou yarn instalados.
  2. Entre na pasta raiz do projeto.
  3. Execute o comando **yarn** para que as dependências sejam baixadas.
  4. Execute o comando **yarn start** para iniciar o projeto front-end.
+ 5. Execute o comando **yarn test** para rodar os testes.
 
 **IMPORTANTE**
 
