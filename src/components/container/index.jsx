@@ -70,6 +70,7 @@ const Container = () => {
                 </DeleteModal>
 
                 <Table employees={employeeList} toggleCreateEditModal={toggleCreateEditModal} setEmployeeId={setEmployeeId} toggleDeleteModal={toggleDeleteModal} />
+                <Spinner {...{isShowingSpinner, toggleSpinner}} ></Spinner>
             </div>
     )
 }
