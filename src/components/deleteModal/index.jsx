@@ -53,7 +53,7 @@ export const DeleteModalBody = ({ toggleDeleteModal, employeeId, listFunction })
       console.log('asdasd')
       if(employeeId){
         
-        const response = await api.delete(employeeId);
+        const response = await api.delete('/employees/'+ employeeId);
       }
       listFunction();
       toggleDeleteModal();

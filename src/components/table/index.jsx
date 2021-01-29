@@ -20,13 +20,13 @@ const Table = ({employees, toggleCreateEditModal, setEmployeeId, toggleDeleteMod
             </thead>
                 <tbody>
             {employees.map(employee =>
-            <tr key={employee._id}>
+            <tr key={employee.id}>
                 <td>{employee.name}</td>
                 <td>{employee.email}</td>
                 <td>{employee.startDate}</td>
                 <td>{employee.team}</td>
-                <td><button className="btn-edit"onClick={() => {toggleCreateEditModal(); setEmployeeId(employee._id) }}> <i className="icon-style"><TiPencil/></i></button></td>
-                <td><button className="btn-delete" onClick={() => {toggleDeleteModal(); setEmployeeId(employee._id) }}> <i className="icon-style"><BsFillTrashFill/></i></button></td>
+                <td><button className="btn-edit"onClick={() => {toggleCreateEditModal(); setEmployeeId(employee.id) }}> <i className="icon-style"><TiPencil/></i></button></td>
+                <td><button className="btn-delete" onClick={() => {toggleDeleteModal(); setEmployeeId(employee.id) }}> <i className="icon-style"><BsFillTrashFill/></i></button></td>
             </tr>
                 )}
             </tbody>

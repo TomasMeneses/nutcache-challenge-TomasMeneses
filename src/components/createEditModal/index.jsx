@@ -70,14 +70,14 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
     try {
       event.preventDefault();
       
-      if(employee && employee._id){
-        var idToUpdate = employee._id;
+      if(employee && employee.id){
+        var idToUpdate = employee.id;
         //const employeeToUpdate = {...employee, _id: undefined}
-        delete employee._id
-        const response = await api.put(idToUpdate, employee);
+        delete employee.id
+        const response = await api.put('/employees/'+idToUpdate, employee);
       }else if (employee) {
-        const response = await api.post('', employee);
-        handleLastEmployeeId(response.data._id);
+        const response = await api.post('/employees', employee);
+        handleLastEmployeeId(response.data.id);
       }
       listFunction();
       toggleCreateEditModal();
@@ -94,7 +94,7 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
     const getEmployee = async () => {
       if(employeeId) {
         try {
-          const response = await api.get(employeeId);
+          const response = await api.get('/employees/'+ employeeId);
           console.log(response.data);
           setEmployee(response.data);
         }catch(error) {
