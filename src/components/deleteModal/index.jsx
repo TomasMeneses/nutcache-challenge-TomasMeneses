@@ -50,16 +50,17 @@ export const DeleteModalBody = ({ toggleDeleteModal, employeeId, listFunction })
   
   const handleSaveEmployee = async (event) => {
     try {
-      console.log('asdasd')
+      
       if(employeeId){
         
         const response = await api.delete('/employees/'+ employeeId);
       }
+      
       listFunction();
       toggleDeleteModal();
 
     }catch(error) {
-      console.log(error);
+      window.alert('Delete Error');
       toggleDeleteModal();
     }
 

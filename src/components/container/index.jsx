@@ -27,10 +27,10 @@ const Container = () => {
     const getData = async () => {
         try {
             const response = await api.get('/employees');
-            console.log(response.data);
+            
             setEmployeeList(response.data);
         }catch(error) {
-            console.log(error);
+            window.alert('Requisition Error');
         }
     };
 

@@ -60,8 +60,7 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
   });
 
   const handleSetValue = (event) => {
-    console.log({...employee, [event.target.name]: event.target.value})
-    setEmployee({...employee, [event.target.name]: event.target.value})
+    setEmployee({...employee, [event.target.name]: event.target.value});
   }
 
 
@@ -72,7 +71,6 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
       
       if(employee && employee.id){
         var idToUpdate = employee.id;
-        //const employeeToUpdate = {...employee, _id: undefined}
         delete employee.id
         const response = await api.put('/employees/'+idToUpdate, employee);
       }else if (employee) {
@@ -83,7 +81,7 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
       toggleCreateEditModal();
 
     }catch(error) {
-      console.log(error);
+      window.alert('Save Fail');
       toggleCreateEditModal();
     }
 
@@ -95,10 +93,9 @@ export const CreateEditModalBody = ({ children, listFunction, employeeId, toggle
       if(employeeId) {
         try {
           const response = await api.get('/employees/'+ employeeId);
-          console.log(response.data);
           setEmployee(response.data);
         }catch(error) {
-          console.log(error);
+          window.alert('Read Employee Error');
         }
       }
       
