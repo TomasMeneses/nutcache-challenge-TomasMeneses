@@ -12,7 +12,12 @@ Antes de tudo você precisa ter o npm ou yarn instalados.
 
  - A única biblioteca instalada foi o Axios.
  - O projeto só funcionará por completo em conjunto com o backend desenvolvido que está no seguinte link : https://github.com/TomasMeneses/nutcache-challenge-backend-TomasMeneses lá serão encontradas instruções para que ele seja executado.
- - Caso queira executar somente o frontend em conjunto com a api fake basta mudar para a branch "apifake" e executar o projeto. **A versão da branch "main" possui mais features e está mais completa**
+ - Caso queira executar somente o frontend em conjunto com a api fake basta mudar para a branch "apifake" e executar o projeto. ** A versão da branch "main" possui mais features e está mais completa **
  
 
 Obrigado :)
+![Tela Inicial](https://drive.google.com/file/d/1tVlHAqR5FBBeOhdNrdrkR0QY3e3jMnET/view?usp=sharing)
+
+![Modal Criação](https://drive.google.com/file/d/1aJxV91P9XLFVpOxV4RLfKFnTOLOBc9ds/view?usp=sharing)
+
+![Modal Delete](https://drive.google.com/file/d/1JShSkygwoW_AMkRa9195HRACm8WEuZV9/view?usp=sharing)
