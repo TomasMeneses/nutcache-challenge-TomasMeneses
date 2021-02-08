@@ -1,4 +1,4 @@
-# Nutcache Front-end!
+# React Crud Front-end!
 
 Instruções para rodar o projeto:
 Antes de tudo você precisa ter o npm ou yarn instalados.
